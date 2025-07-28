@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CALCM - Web</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+            font-family: 'Orbitron', sans-serif;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+        .container {
+            background: #1c1c2b;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 255, 255, 0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #00ffff;
+        }
+        img {
+            display: block;
+            margin: 0 auto 5px auto;
+            height: 100px;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: none;
+            background: #2a2a3a;
+            color: #ffffff;
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            width: 100%;
+            background: #00ffff;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        button:hover {
+            background: #00cccc;
+        }
+        pre {
+            background: #2a2a3a;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 10px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/static/cmcalc.png" alt="CALCM Logo">
+        <h1>CMCalc</h1>
+		<center><h5>Contrast Media Volume Calculate</h5></center>
+        <form id="calcForm">
+            <label>Berat Badan (kg)</label><input type="number" step="any" id="bb">
+            <label>Tinggi Badan (cm)</label><input type="number" step="any" id="tb">
+            <label>Scan Length (cm)</label><input type="number" step="any" id="sl">
+            <label>Konsentrasi CM</label><input type="number" step="any" id="cm">
+            <label>Scan Time (sec)</label><input type="number" step="any" id="st">
+            <label>Durasi Injeksi (sec)</label><input type="number" step="any" id="di">
+            <button type="submit">Hitung</button>
+        </form>
+        <pre id="result"></pre>
+    </div>
+    <script>
+        document.getElementById('calcForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const bb = parseFloat(document.getElementById('bb').value);
+            const tb = parseFloat(document.getElementById('tb').value);
+            const sl = parseFloat(document.getElementById('sl').value);
+            const cm = parseFloat(document.getElementById('cm').value);
+            const st = parseFloat(document.getElementById('st').value);
+            const di = parseFloat(document.getElementById('di').value);
+
+            const bsa = ((tb * bb) / 3600)* 0.5;
+            const bsaMod = ((sl * bb) / 3600)* 0.5;
+            const volumeCM = (12.753 * bsa)/ (cm/1000);
+            const volumeCMMod = (12.753 * bsa_mod)/ (cm/1000);
+            const delay = di + (5-(st / 2));
+
+            document.getElementById('result').innerText = 
+                `BSA: ${bsa.toFixed(6)}
+` +
+                `BSA Modifikasi: ${bsaMod.toFixed(6)}
+` +
+                `Volume CM: ${volumeCM.toFixed(6)}
+` +
+                `Volume CM Modifikasi: ${volumeCMMod.toFixed(6)}
+` +
+                `Delay Scan: ${delay.toFixed(2)} sec`;
+        });
+    </script>
+</body>
+</html>
