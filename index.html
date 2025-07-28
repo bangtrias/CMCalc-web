@@ -8,7 +8,7 @@
     <style>
         body {
             background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Arial', sans-serif;
             color: #ffffff;
             display: flex;
             flex-direction: column;
@@ -30,7 +30,7 @@
         img {
             display: block;
             margin: 0 auto 5px auto;
-            height: 100px;
+            height: 170px;
         }
         label {
             display: block;
@@ -72,9 +72,9 @@
 </head>
 <body>
     <div class="container">
-        <img src="/static/cmcalc.png" alt="CALCM Logo">
+        <img src="/cmcalc.png" alt="CALCM Logo">
         <h1>CMCalc</h1>
-		<center><h5>Contrast Media Volume Calculate</h5></center>
+		<center><h5>Contrast Media Volume Calculator</h5></center>
         <form id="calcForm">
             <label>Berat Badan (kg)</label><input type="number" step="any" id="bb">
             <label>Tinggi Badan (cm)</label><input type="number" step="any" id="tb">
@@ -82,7 +82,7 @@
             <label>Konsentrasi CM</label><input type="number" step="any" id="cm">
             <label>Scan Time (sec)</label><input type="number" step="any" id="st">
             <label>Durasi Injeksi (sec)</label><input type="number" step="any" id="di">
-            <button type="submit">Hitung</button>
+            <button type="submit">CALCULATE</button>
         </form>
         <pre id="result"></pre>
     </div>
